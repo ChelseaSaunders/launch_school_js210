@@ -45,26 +45,24 @@ uppercase z = 90
 */
 function isUpperCaseLetter(character) {
   let characterCode = character.charCodeAt(0);
-  if (characterCode >= 65 && characterCode <= 90) return true;
-  return false;
+  return !!(characterCode >= 65 && characterCode <= 90);
 }
 
 function isLowerCaseLetter(character) {
   let characterCode = character.charCodeAt(0);
-  if (characterCode >= 97 && characterCode <= 122) return true;
-  return false;
+  return !!(characterCode >= 97 && characterCode <= 122);
 }
 
-console.log(isUpperCaseLetter('a'));
-console.log(isUpperCaseLetter('z'));
-console.log(isUpperCaseLetter('A'));
-console.log(isUpperCaseLetter('Z'));
-console.log(isUpperCaseLetter('q'));
-console.log(isUpperCaseLetter('Q'));
-console.log(isUpperCaseLetter('0'));
-console.log(isUpperCaseLetter('9'));
-console.log(isUpperCaseLetter(' '));
-console.log(isUpperCaseLetter('!'));
+console.log(isLowerCaseLetter('a'));
+console.log(isLowerCaseLetter('z'));
+console.log(isLowerCaseLetter('A'));
+console.log(isLowerCaseLetter('Z'));
+console.log(isLowerCaseLetter('q'));
+console.log(isLowerCaseLetter('Q'));
+console.log(isLowerCaseLetter('0'));
+console.log(isLowerCaseLetter('9'));
+console.log(isLowerCaseLetter(' '));
+console.log(isLowerCaseLetter('!'));
 
 // function encodeUpperCaseLetter(character) {
 
