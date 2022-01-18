@@ -38,51 +38,69 @@ EXAMPLES
 DATA
 
 ALGORITHM 
-
+lowercase a = 97
+lowercase z = 122
+uppercase a = 65
+uppercase z = 90
 */
 function isUpperCaseLetter(character) {
-
+  let characterCode = character.charCodeAt(0);
+  if (characterCode >= 65 && characterCode <= 90) return true;
+  return false;
 }
 
 function isLowerCaseLetter(character) {
-
+  let characterCode = character.charCodeAt(0);
+  if (characterCode >= 97 && characterCode <= 122) return true;
+  return false;
 }
 
-function encodeUpperCaseLetter(character) {
+console.log(isUpperCaseLetter('a'));
+console.log(isUpperCaseLetter('z'));
+console.log(isUpperCaseLetter('A'));
+console.log(isUpperCaseLetter('Z'));
+console.log(isUpperCaseLetter('q'));
+console.log(isUpperCaseLetter('Q'));
+console.log(isUpperCaseLetter('0'));
+console.log(isUpperCaseLetter('9'));
+console.log(isUpperCaseLetter(' '));
+console.log(isUpperCaseLetter('!'));
 
-}
+// function encodeUpperCaseLetter(character) {
 
-function encodeLowerCaseLetter(character) {
+// }
 
-}
+// function encodeLowerCaseLetter(character) {
 
-function rot13(string) {
-  let cipherString = ''
+// }
 
-  for (let index = 0; index < string.length; index += 1){
-    let currentChar = string[index]
+// function rot13(string) {
+//   let cipherString = ''
 
-    if (isUpperCaseLetter(currentChar)) {
-      cipherString += encodeUpperCaseLetter(currentChar);
-    } else if (isLowerCaseLetter(currentChar)) {
-      cipherString += encodeLowerCaseLetter(currentChar);
-    } else {
-      cipherString += currentChar;
-    }
+//   for (let index = 0; index < string.length; index += 1){
+//     let currentChar = string[index]
 
-  return cipherString;
-}
+//     if (isUpperCaseLetter(currentChar)) {
+//       cipherString += encodeUpperCaseLetter(currentChar);
+//     } else if (isLowerCaseLetter(currentChar)) {
+//       cipherString += encodeLowerCaseLetter(currentChar);
+//     } else {
+//       cipherString += currentChar;
+//     }
 
-let testString = 'Teachers open the door, but you must enter by yourself.';
-let customTestStringWithNumbers = 'Testing, 1, 2, 3!';
-console.log(rot13(testString));
-// logs: Grnpuref bcra gur qbbe, ohg lbh zhfg ragre ol lbhefrys.
+//   return cipherString;
+// }
 
-console.log(rot13(rot13(testString)));
-// logs: Teachers open the door, but you must enter by yourself.
+// let testString = 'Teachers open the door, but you must enter by yourself.';
+// let customTestStringWithNumbers = 'Testing, 1, 2, 3!';
+// console.log(rot13(testString));
+// // logs: Grnpuref bcra gur qbbe, ohg lbh zhfg ragre ol lbhefrys.
 
-console.log(rot13(customTestStringWithNumbers));
-// logs: Grfg_at, 1, 2, 3!
+// console.log(rot13(rot13(testString)));
+// // logs: Teachers open the door, but you must enter by yourself.
 
-console.log(rot13(rot13(customTestStringWithNumbers)));
-// logs: Testing, 1, 2, 3!
+// console.log(rot13(customTestStringWithNumbers));
+// // logs: Grfg_at, 1, 2, 3!
+
+// console.log(rot13(rot13(customTestStringWithNumbers)));
+// // logs: Testing, 1, 2, 3!
