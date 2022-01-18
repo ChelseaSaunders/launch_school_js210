@@ -1,27 +1,31 @@
-function isUpperCaseLetter(character) {
-  let characterCode = character.charCodeAt(0);
-  return !!(characterCode >= 65 && characterCode <= 90);
+const UPPERCASE_START = 65;
+const UPPERCASE_END = 90;
+const LOWERCASE_START = 97;
+const LOWERCASE_END = 122;
+const ENCRYPT_INCREMENT = 13;
+
+function isUpperCaseLetter(characterCode) {
+  return !!(characterCode >= UPPERCASE_START && characterCode <= UPPERCASE_END);
 }
 
-function isLowerCaseLetter(character) {
-  let characterCode = character.charCodeAt(0);
-  return !!(characterCode >= 97 && characterCode <= 122);
+function isLowerCaseLetter(characterCode) {
+  return !!(characterCode >= LOWERCASE_START && characterCode <= LOWERCASE_END);
 }
 
-function encodeUpperCaseLetter(character) {
-  let newCharacterCode = character.charCodeAt(0) + 13;
-  if (newCharacterCode > 90) {
-    newCharacterCode -= 90;
+function encodeUpperCaseLetter(characterCode) {
+  let newCharacterCode = characterCode + ENCRYPT_INCREMENT;
+  if (newCharacterCode > UPPERCASE_END) {
+    newCharacterCode -= UPPERCASE_END;
     newCharacterCode += 64;
   }
 
   return String.fromCharCode(newCharacterCode);
 }
 
-function encodeLowerCaseLetter(character) {
-  let newCharacterCode = character.charCodeAt(0) + 13;
-  if (newCharacterCode > 122) {
-    newCharacterCode -= 122;
+function encodeLowerCaseLetter(characterCode) {
+  let newCharacterCode = characterCode + ENCRYPT_INCREMENT;
+  if (newCharacterCode > LOWERCASE_END) {
+    newCharacterCode -= LOWERCASE_END;
     newCharacterCode += 96;
   }
 
@@ -33,11 +37,12 @@ function rot13(string) {
 
   for (let index = 0; index < string.length; index += 1) {
     let currentChar = string[index]
+    let currentCharCode = currentChar.charCodeAt(0);
 
-    if (isUpperCaseLetter(currentChar)) {
-      cipherString += encodeUpperCaseLetter(currentChar);
-    } else if (isLowerCaseLetter(currentChar)) {
-      cipherString += encodeLowerCaseLetter(currentChar);
+    if (isUpperCaseLetter(currentCharCode)) {
+      cipherString += encodeUpperCaseLetter(currentCharCode);
+    } else if (isLowerCaseLetter(currentCharCode)) {
+      cipherString += encodeLowerCaseLetter(currentCharCode);
     } else {
       cipherString += currentChar;
     }
