@@ -1,33 +1,31 @@
+// ASCII values:
+
 const UPPERCASE_START = 65;
 const UPPERCASE_END = 90;
 const LOWERCASE_START = 97;
 const LOWERCASE_END = 122;
 const ENCRYPT_INCREMENT = 13;
 
-function isUpperCaseLetter(characterCode) {
-  return !!(characterCode >= UPPERCASE_START && characterCode <= UPPERCASE_END);
+function characterType(characterCode) {
+  if (characterCode >= UPPERCASE_START && characterCode <= UPPERCASE_END) {
+    return 'uppercase';
+  } else if (characterCode >= LOWERCASE_START && characterCode <= LOWERCASE_END) {
+    return 'lowercase';
+  }
 }
 
-function isLowerCaseLetter(characterCode) {
-  return !!(characterCode >= LOWERCASE_START && characterCode <= LOWERCASE_END);
-}
-
-function encodeUpperCaseLetter(characterCode) {
+function encodeLetter(characterCode, letterRangeStart, letterRangeEnd) {
   let newCharacterCode = characterCode + ENCRYPT_INCREMENT;
-  if (newCharacterCode > UPPERCASE_END) {
-    newCharacterCode -= UPPERCASE_END;
-    newCharacterCode += 64;
+
+  if (newCharacterCode > letterRangeEnd) {
+    newCharacterCode -= (letterRangeEnd + 1); 
+    newCharacterCode += letterRangeStart;
   }
 
-  return String.fromCharCode(newCharacterCode);
-}
-
-function encodeLowerCaseLetter(characterCode) {
-  let newCharacterCode = characterCode + ENCRYPT_INCREMENT;
-  if (newCharacterCode > LOWERCASE_END) {
-    newCharacterCode -= LOWERCASE_END;
-    newCharacterCode += 96;
-  }
+/* Note: The reason for adding 1 to letterRangeEnd is because we need to start 
+new values at 0. If a number is 1 past the last letter, it should evaluate
+to the beginning of the letter range, NOT the beginning of the letter range
++ 1  */
 
   return String.fromCharCode(newCharacterCode);
 }
@@ -37,12 +35,13 @@ function rot13(string) {
 
   for (let index = 0; index < string.length; index += 1) {
     let currentChar = string[index]
-    let currentCharCode = currentChar.charCodeAt(0);
+    let charCode = currentChar.charCodeAt(0);
+    let charType = characterType(charCode);
 
-    if (isUpperCaseLetter(currentCharCode)) {
-      cipherString += encodeUpperCaseLetter(currentCharCode);
-    } else if (isLowerCaseLetter(currentCharCode)) {
-      cipherString += encodeLowerCaseLetter(currentCharCode);
+    if (charType === 'uppercase') {
+      cipherString += encodeLetter(charCode, UPPERCASE_START, UPPERCASE_END);
+    } else if (charType === 'lowercase') {
+      cipherString += encodeLetter(charCode, LOWERCASE_START, LOWERCASE_END);
     } else {
       cipherString += currentChar;
     }
