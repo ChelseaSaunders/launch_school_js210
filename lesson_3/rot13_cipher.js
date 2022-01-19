@@ -1,17 +1,15 @@
-// ASCII values:
-
-const UPPERCASE_START = 65;
-const UPPERCASE_END = 90;
-const LOWERCASE_START = 97;
-const LOWERCASE_END = 122;
+const UPPERCASE_START = 'A'.charCodeAt();
+const UPPERCASE_END = 'Z'.charCodeAt();
+const LOWERCASE_START = 'a'.charCodeAt();
+const LOWERCASE_END = 'z'.charCodeAt();
 const ENCRYPT_INCREMENT = 13;
 
-function characterType(characterCode) {
-  if (characterCode >= UPPERCASE_START && characterCode <= UPPERCASE_END) {
-    return 'uppercase';
-  } else if (characterCode >= LOWERCASE_START && characterCode <= LOWERCASE_END) {
-    return 'lowercase';
-  }
+function isUpperCase(characterCode) {
+  return !!(characterCode >= UPPERCASE_START && characterCode <= UPPERCASE_END);
+}
+
+function isLowerCase(characterCode){
+  return !!(characterCode >= LOWERCASE_START && characterCode <= LOWERCASE_END);
 }
 
 function encodeLetter(characterCode, letterRangeStart, letterRangeEnd) {
@@ -22,11 +20,6 @@ function encodeLetter(characterCode, letterRangeStart, letterRangeEnd) {
     newCharacterCode += letterRangeStart;
   }
 
-/* Note: The reason for adding 1 to letterRangeEnd is because we need to start 
-new values at 0. If a number is 1 past the last letter, it should evaluate
-to the beginning of the letter range, NOT the beginning of the letter range
-+ 1  */
-
   return String.fromCharCode(newCharacterCode);
 }
 
@@ -36,11 +29,10 @@ function rot13(string) {
   for (let index = 0; index < string.length; index += 1) {
     let currentChar = string[index]
     let charCode = currentChar.charCodeAt(0);
-    let charType = characterType(charCode);
 
-    if (charType === 'uppercase') {
+    if (isUpperCase(charCode)) {
       cipherString += encodeLetter(charCode, UPPERCASE_START, UPPERCASE_END);
-    } else if (charType === 'lowercase') {
+    } else if (isLowerCase(charCode)) {
       cipherString += encodeLetter(charCode, LOWERCASE_START, LOWERCASE_END);
     } else {
       cipherString += currentChar;
@@ -63,3 +55,8 @@ console.log(rot13(customTestStringWithNumbers));
 
 console.log(rot13(rot13(customTestStringWithNumbers)));
 // logs: Testing, 1, 2, 3!
+
+console.log(rot13(''));
+// logs: Grfgvat, 1, 2, 3!
+
+console.log(rot13(rot13('')));
