@@ -4,11 +4,11 @@ const LOWERCASE_START = 'a'.charCodeAt();
 const LOWERCASE_END = 'z'.charCodeAt();
 const ENCRYPT_INCREMENT = 13;
 
-function isUpperCase(characterCode) {
+function isUpperCaseLetter(characterCode) {
   return !!(characterCode >= UPPERCASE_START && characterCode <= UPPERCASE_END);
 }
 
-function isLowerCase(characterCode){
+function isLowerCaseLetter(characterCode){
   return !!(characterCode >= LOWERCASE_START && characterCode <= LOWERCASE_END);
 }
 
@@ -30,9 +30,9 @@ function rot13(string) {
     let currentChar = string[index]
     let charCode = currentChar.charCodeAt(0);
 
-    if (isUpperCase(charCode)) {
+    if (isUpperCaseLetter(charCode)) {
       cipherString += encodeLetter(charCode, UPPERCASE_START, UPPERCASE_END);
-    } else if (isLowerCase(charCode)) {
+    } else if (isLowerCaseLetter(charCode)) {
       cipherString += encodeLetter(charCode, LOWERCASE_START, LOWERCASE_END);
     } else {
       cipherString += currentChar;
