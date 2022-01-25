@@ -17,14 +17,21 @@
     as key and answer.length as valye to object
   */
 
-function repeatedCharacters(string){
-  let lowercaseString = string.toLowerCase();
+function createUniqueLettersArr(word) {
   let uniqueLettersArr = [];
-  for (let i = 0; i <= string.length; i += 1) {
-    if (!uniqueLettersArr.includes(lowercaseString[i])) {
-      uniqueLettersArr.push(lowercaseString[i]);
+
+  for (let i = 0; i <= word.length; i += 1) {
+    if (!uniqueLettersArr.includes(word[i])) {
+      uniqueLettersArr.push(word[i]);
     }
   }
+  return uniqueLettersArr;
+}
+
+
+function repeatedCharacters(string){
+  let lowercaseString = string.toLowerCase();
+  let uniqueLettersArr = createUniqueLettersArr(lowercaseString);
   
   let charCount = {}
   uniqueLettersArr.forEach((letter) => {
