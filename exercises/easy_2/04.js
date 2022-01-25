@@ -59,3 +59,6 @@ function findFibonacciIndexByLength(length) {
 
   return count;
 }
+def method(a, b) 
+  yield(a, b) 
+end 
