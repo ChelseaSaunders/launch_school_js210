@@ -44,3 +44,16 @@ function isItemAvailable(itemID, transactionList) {
 
 console.log(isItemAvailable(101, transactions));     // false
 console.log(isItemAvailable(105, transactions));     // true
+
+// Better LS solution:
+// function isItemAvailable(item, transactions) {
+//   const quantity = transactionsFor(item, transactions).reduce((sum, transaction) => {
+//     if (transaction.movement === 'in') {
+//       return sum + transaction.quantity;
+//     } else {
+//       return sum - transaction.quantity;
+//     }
+//   }, 0);
+
+//   return quantity > 0;
+// }

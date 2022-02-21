@@ -1,29 +1,51 @@
 "use strict"
 
-// The function placeABet below accepts a guess from the user between 1 and 25.
-// The function should determine a winning number and return a message to the
-// user indicating whether he/she entered a winning guess. When you try to
-// invoke placeABet, an error is raised. Fix the bug and explain what caused it.
+// One bored and hungry evening we decided to randomly generate recipes. We
+// can't wait to see the first suggestions, but JavaScript raises a TypeError,
+// telling us that dishName.join is not a function. What is wrong?
 
-function generateRandomInt() {
-  return Math.floor(Math.random() * 25) + 1;
-}
-
-function placeABet(guess) {
-  const winningNumber = generateRandomInt();
-
-  if (guess < 1 || guess > 25) {
-    return 'Invalid guess. Valid guesses are between 1 and 25.';
+// Picks n random elements from an array,
+// and returns a new array with those elements.
+function random(array, n) {
+  if (n === undefined) {
+    n = 1;
   }
 
-  if (guess === winningNumber) {
-    return "Congratulations, you win!";
-  } else {
-    return "Wrong-o! You lose.";
+  const elements = array.slice();
+  const randomElements = [];
+
+  while (n > 0 && elements.length > 0) {
+    const randomIndex = Math.floor(Math.random() * elements.length);
+    const randomElement = elements[randomIndex];
+
+    randomElements.push(randomElement);
+    elements.splice(randomIndex, 1);
+    n--;
   }
+
+  return randomElements;
 }
 
-let rlSync = require('readline-sync');
+// Ingredients
 
-const userGuess = parseInt(rlSync.question('Input a guess between 1-25'), 10);
-console.log(placeABet(userGuess));
+const ingredients = ['rice', 'green bell pepper', 'mushrooms', 'carrot', 'kebab',
+  'spinach', 'soy bean sprouts', 'mashed potatoes', 'corn', 'cucumber', 'peas'];
+
+const spices = ['peri peri', 'cinnamon', 'nutmeg', 'cardamom', 'ground ginger',
+  'poppy seed', 'cumin'];
+
+const extras = ['peanuts', 'sesame seeds', 'egg', 'wasabi', 'soy sauce'];
+
+// Name
+
+const adjective  = ['Delicious', 'Hot', 'Exotic', 'Creative', 'Festive', 'Dark'];
+const firstNoun  = ['Power', 'After Work', 'Holiday', 'Disco', 'Late Night'];
+const secondNoun = ['Mix', 'Delight', 'Bowl', 'Chunk', 'Surprise', 'Bliss'];
+
+// Generate!
+
+const dishName = random(adjective) + random(firstNoun) + random(secondNoun);
+const dish = random(ingredients, 3) + random(spices, 2) + random(extras, 1);
+
+console.log(`How about: ${dishName.join(' ')}`);
+console.log(`You need: ${dish.join(', ')}`);

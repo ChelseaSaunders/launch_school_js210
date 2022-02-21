@@ -1,25 +1,25 @@
-// You have written basic functions to display a random greeting to any number
-// of friends upon each invocation of greet. Upon invoking the greet function,
-// however, the output is not as expected. Figure out why not and fix the code.
+"use strict"
 
-function randomGreeting() {
-  const words = ['Hello', 'Howdy', 'Hi', 'Hey there', 'What\'s up',
-               'Greetings', 'Salutations', 'Good to see you'];
+// Gemma and some friends are working on a complex program to generate word
+// ladders, transforming one word into another word one character at a time. The
+// smallest of her tasks is to print the resulting ladder to the screen.
 
-  const idx = Math.floor(Math.random() * words.length);
+// A "ladder" is simply an array of word strings; Gemma decides to transform
+// this array into a single string where each word within the string is separated
+// by a hyphen ('-'). For example, the array ['pig', 'pie', 'lie', 'lit', 'let']
+// should be printed as the string 'pig-pie-lie-lit-let'.
 
-  return words[idx];
-}
+// Upon first glance, Gemma's code below looks like it should work. But it throws
+//  a TypeError, saying: Cannot read property 'forEach' of undefined. Why is that?
 
-function greet(...args) {
-  const names = args.slice(' ');
+let ladder = ''
 
-  for (let i = 0; i < names.length; i += 1) {
-    const name = names[i];
-    const greeting = randomGreeting();
-
-    console.log(`${greeting}, ${name}!`);
+['head', 'heal', 'teal', 'tell', 'tall', 'tail'].forEach(word => {
+  if (ladder !== '') {
+    ladder += '-'
   }
-}
 
-greet('Hannah', 'Jose', 'Beatrix', 'Julie', 'Ian');
+  ladder += word
+})
+
+console.log(ladder)  // expect: head-heal-teal-tell-tall-tail

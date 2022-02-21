@@ -1,27 +1,50 @@
-//Run the following code. Why is every warning displayed twice? Change the code
-// so that each warning is displayed only once, as intended.
+"use strict"
 
-const species = ['wolf', 'human', 'wasp', 'squirrel', 'weasel', 'dinosaur'];
-const isMidnight = true;
-const isFullmoon = true;
+// Caroline manages the member directory of her club and decided to implement a
+// program she can use for doing that. Since the club is not very big, it's
+// sufficient for her to keep the members' names and phone numbers in an object.
+// Later she wants to add functionality that allows her to write this object to
+// a file.
 
-function isTransformable(species) {
-  return species[0] === 'w';
+// One requirement Caroline takes very seriously is input validation. She
+// intended for her code to strictly require that only alphabetic letters be
+// included in the members' first and last names, separated by a space. But upon
+// making a typo when entering the information of the newest member, she
+// realizes that isn't the case.
+
+// Figure out why not and fix the code so that it works as expected. You may
+// also consider writing a few more test cases to insure that the input
+// validation requirement is properly met.
+
+const memberDirectory = {
+  'Jane Doe': '323-8293',
+  'Margaret Asbury': '989-1111',
+  'Callum Beech': '533-9090',
+  'Juanita Eastman': '424-1919',
+};
+
+function isValidName(name) {
+  return (/^\w+ \w+$/).test(name);
 }
 
-function transform(species) {
-  return `were${species}`;
+function isValidPhone(phone) {
+  return (/^\d{3}-\d{4}$/).test(phone);
 }
 
-for (let index = 0; index < species.length; index += 1) {
-  const thisSpecies = species[index];
-  let newSpecies;
+function validMemberInfo(name, phone) {
+  return isValidName(name) && isValidPhone(phone);
+}
 
-  if (isMidnight && isFullmoon && isTransformable(thisSpecies)) {
-    newSpecies = transform(thisSpecies);
+function addMember(name, phone) {
+  if (validMemberInfo(name, phone)) {
+    memberDirectory[name] = phone;
+  } else {
+    console.log('Invalid member information.');
   }
-
-  if (newSpecies) {
-    console.log(`Beware of the ${newSpecies}!`);
-  }
 }
+
+addMember('Laura Carlisle', '444-2223');
+addMember('Rachel Garcia', '232-1191');
+addMember('Earl 5mith', '331-9191');
+
+console.log(memberDirectory);

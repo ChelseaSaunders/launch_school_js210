@@ -1,51 +1,29 @@
 "use strict"
 
-// Todd wrote some simple code in an attempt to log his shop's financial
-// transactions. Each time he makes a sale or spends money on inventory, he logs
-// that deposit or withdrawal via the logTransaction function. His code also
-// intends to ensure that each transaction logged is a valid numerical amount.
-// At the end of each day, he displays his total gain or loss for the day with
-// transactionTotal.
+// We are assigned the task to implement a range function that returns an array
+// of integers beginning and ending with specified start and end numbers. When
+// only a single argument is provided, that argument should be used as the
+// ending number and the starting number should be 0.
 
-// Test out the code yourself. Can you spot the problem and fix it?
+// Check our code below. Why do the example invocations fail with an error
+// saying Maximum call stack size exceeded? Can you fix the code, so it runs
+// without error and satisfies the requirements?
 
-const transactionLog = [];
+function range(start, end) {
+  const range = [];
 
-function processInput(input) {
-  const numericalData = parseFloat(input);
-
-  if (Number.isNaN(numericalData)) {
-    throw (new Error('Data could not be converted to numerical amount.'));
+  for (let element = start; element <= end; element++) {
+    range.push(element);
   }
 
-  return numericalData;
+  return range;
 }
 
-function logTransaction() {
-  let data = prompt('Please enter the transaction amount: ');
-
-  try {
-    data = processInput(data);
-    transactionLog.push(data);
-
-    alert('Thank you. Data accepted.');
-  } catch(error) {
-    alert(error.message);
-  }
+function range(end) {
+  return range(0, end);
 }
 
-function transactionTotal() {
-  let total = 0;
+// Examples
 
-  for (let i = 0; i < transactionLog.length; i++) {
-    total += transactionLog[i];
-  }
-
-  return total;
-}
-
-logTransaction();
-logTransaction();
-logTransaction();
-
-console.log(transactionTotal());
+console.log(range(10, 20));
+console.log(range(5));

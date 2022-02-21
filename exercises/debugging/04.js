@@ -1,32 +1,58 @@
 "use strict"
 
-// We love to visit museums if they are about science or computers. We're
-// undecided when it comes to modern art, and would rather not go in most cases.
-// However, we're willing to go to any modern art museum that is about Andy
-// Warhol (we like him!) or that is located in nearby Amsterdam. We'd rather
-// skip any other museums.
+// We were asked to implement a task list and the following functionality:
 
-// We tried to implement these preferences in a function, so we can
-// automatically sort through long lists of museums and find the ones that sound
-// interesting. However, our Boolean check is flawed, as it fails some of our
-// test cases. Can you fix it?
+//     adding a new task
+//     completing a given number of existing tasks
+//     displaying the task list
 
-function wantToVisit(museum, city) {
-  return museum.includes('Computer') || museum.includes('Science')
-      || ((museum.includes('Modern') || museum.includes('Art'))
-        && ((museum.includes('Andy Warhol')
-        || city === 'Amsterdam')));
+// We decided to keep things simple and model the tasks as strings. Completing a
+// task for us simply means deleting the string from the array of tasks.
+
+// Experimenting with our code reveals that it doesn't work exactly as we
+// expected. Find the problem and fix it.
+
+const todos = ['wash car', 'exercise', 'buy groceries', 'balance budget',
+             'call plumber', 'feed fido', 'get gas',  'organize closet'];
+
+function addTask(task) {
+  if (todos.includes(task)) {
+    console.log('That task is already on the list.');
+  } else {
+    todos.push(task);
+  }
 }
 
-// Tests (should all print 'true')
+function completeTasks(n = 1) {
+  let tasksComplete = 0;
 
-console.log(wantToVisit('Computer Games Museum', 'Berlin') === true);
-console.log(wantToVisit('National Museum of Nature and Science', 'Tokyo') === true);
-console.log(wantToVisit('Museum of Modern Art', 'New York') === false);
-console.log(wantToVisit('El Paso Museum of Archaeology', 'El Paso') === false);
-console.log(wantToVisit('NEMO Science Museum', 'Amsterdam') === true);
-console.log(wantToVisit('National Museum of Modern Art', 'Paris') === false);
-console.log(wantToVisit('Andy Warhol Museum of Modern Art', 'Medzilaborce') === true);
-console.log(wantToVisit('Moco: Modern Contemporary Art', 'Amsterdam') === true);
-console.log(wantToVisit('Van Gogh Museum', 'Amsterdam') === false);
-console.log(wantToVisit('Andy Warhol Museum', 'Melbourne') === false);
+  while (todos.length > 0 && tasksComplete < n) {
+    console.log(`${todos[0]} complete!`);
+    delete todos[0];
+    tasksComplete++;
+  }
+
+  if (todos.length === 0) {
+    console.log('All tasks complete!');
+  } else {
+    console.log(`${tasksComplete} tasks completed; ${todos.length} remaining.`);
+  }
+}
+
+function displayTaskList() {
+  console.log(`ToDo list (${todos.length} tasks):`)
+  console.log('---------------------');
+
+  for (let i = 0; i < todos.length; i++) {
+    console.log(`-- ${todos[i]}`);
+  }
+}
+
+// Utilizing our task manager
+
+addTask('oil change');
+addTask('dentist');
+addTask('homework');
+
+completeTasks(3);
+displayTaskList();
