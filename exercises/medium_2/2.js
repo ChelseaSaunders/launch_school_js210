@@ -15,11 +15,71 @@
 // arguments and returns one of the following four strings representing the
 // triangle's classification: 'equilateral', 'isosceles', 'scalene', or
 // 'invalid'.
+/*
+PROBLEM
+rules for valid:
+- sum of lengths of two shortest sides is > length of longest side
+- All side lengths are > 0
 
+Take three numbers (lengths of sides)
+- Make sure all sides are > 0
+- find longest side and make sure it is less than the sum of the other two sides
+If either of these conditions is not met, return 'invalid'
+
+determine what type of triangle it is:
+- if all sides are equal return 'equilateral'
+- of two sides are equal return 'isosceles'
+- otherwise return scalene
+
+DATA:
+Input: number
+Output: string
+Manipulation: array
+
+ALGO:
+create array with all three values
+  - sort array by length (b - a )
+create helper function invalid
+  - if any in array are 0, reurn true
+
+  if array 0  <= array 1 + array 2 return true
+
+  return false
+if invalid(array of triangles) return 'invalid'
+
+create helper function triangle type
+  - if array 0 === array 2 return equalitaral
+  - else if array[0] === array 1 array 1 === array 2 return isoscleles
+  -else reurn scalne
+
+return triangle type triangleaRray
+*/
 // Examples:
 
-triangle(3, 3, 3);        // "equilateral"
-triangle(3, 3, 1.5);      // "isosceles"
-triangle(3, 4, 5);        // "scalene"
-triangle(0, 3, 3);        // "invalid"
-triangle(3, 1, 1);        // "invalid"
+function triangle(side1, side2, side3) {
+let triangleSides = [side1, side2, side3].sort((a, b) => b - a);
+if (invalid(triangleSides)) return 'invalid';
+return triangleType(triangleSides);
+}
+
+function invalid(sides) {
+  if (sides.includes(0)) return true;
+  if (sides[0] >= sides[1] + sides[2]) return true;
+  return false;
+}
+
+function triangleType(sides) {
+  if (sides[0] === sides[2]) {
+    return 'equilateral';
+  } else if (sides[0] === sides[1] || sides[1] == sides[2]) {
+    return 'isosceles';
+  } else {
+    return 'scalene';
+  }
+}
+
+console.log(triangle(3, 3, 3));        // "equilateral"
+console.log(triangle(3, 3, 1.5));      // "isosceles"
+console.log(triangle(3, 4, 5));        // "scalene"
+console.log(triangle(0, 3, 3));        // "invalid"
+console.log(triangle(3, 1, 1));        // "invalid"

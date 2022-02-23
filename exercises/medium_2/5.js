@@ -11,15 +11,54 @@
 
 // NOTE: The largest possible featured number is 9876543201.
 
-// Examples:
+/*
+Rules:
+% 2 === 1
+% 7 === 0
+each digit only once
+split.length <= 10
 
-featured(12);           // 21
-featured(20);           // 21
-featured(21);           // 35
-featured(997);          // 1029
-featured(1029);         // 1043
-featured(999999);       // 1023547
-featured(999999987);    // 1023456987
-featured(9876543186);   // 9876543201
-featured(9876543200);   // 9876543201
-featured(9876543201);   // "There is no possible number that fulfills those requirements."
+
+*/
+
+// Examples:
+function featured(num) {
+  if (num >= 9876543201) {
+    return "There is no possible number that fulfills those requirements.";
+  }
+
+  num = findOddSevensNumber(num)
+  while (!uniqueDigits(num)) { num += 14 }
+
+  return num;
+}
+
+function findOddSevensNumber(number) {
+  number += 7 - (number % 7);
+  if (number % 2 === 0) number += 7;
+  return number;
+}
+
+function uniqueDigits(number) {
+  let digits = String(number).split('')
+  let usedNumbers = [];
+
+  for (let i = 0; i < digits.length; i += 1) {
+    let currentDigit = digits[i];
+    if (usedNumbers.includes(currentDigit)) return false;
+    usedNumbers.push(currentDigit);
+  }
+
+  return true;
+}
+
+console.log(featured(12));           // 21
+console.log(featured(20));           // 21
+console.log(featured(21));           // 35
+console.log(featured(997));          // 1029
+console.log(featured(1029));         // 1043
+console.log(featured(999999));       // 1023547
+console.log(featured(999999987));    // 1023456987
+console.log(featured(9876543186));   // 9876543201
+console.log(featured(9876543200));   // 9876543201
+console.log(featured(9876543201));   // "There is no possible number that fulfills those requirements."

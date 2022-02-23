@@ -52,6 +52,22 @@
 
 // Examples:
 
+function bubbleSort(array) {
+  let swapped;
+
+  do {
+    swapped = true
+    for (let i = 0; i < array.length - 1; i += 1) {
+      if (array[i] > array[i + 1]) {
+        [array[i],  array[i + 1]] = [array[i + 1], array[i]];
+        swapped = false;
+      }
+    }
+  } while (swapped === false);
+
+  return array;
+}
+
 const array1 = [5, 3];
 bubbleSort(array1);
 console.log(array1);    // [3, 5]
