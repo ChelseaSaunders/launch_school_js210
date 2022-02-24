@@ -19,7 +19,7 @@ function addTask(task) {
   if (todos.includes(task)) {
     console.log('That task is already on the list.');
   } else {
-    todos.push(task);
+    todos.shift(task);
   }
 }
 

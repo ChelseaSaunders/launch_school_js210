@@ -30,10 +30,10 @@ function valence(element) {
   }
 }
 
-function valenceOfMolecule() {
+function valenceOfMolecule(...args) {
   let sum = 0;
 
-  arguments.forEach(atom => {
+  args.forEach(atom => {
     const match   = /([a-zA-Z]+)([0-9]*)/.exec(atom);
     const element = match[1];
     const number  = parseInt(match[2]) || 1;

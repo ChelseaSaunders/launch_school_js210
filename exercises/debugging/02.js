@@ -13,13 +13,12 @@ const RESERVED_KEYWORDS = ['break', 'case', 'catch', 'class', 'const', 'continue
   'with', 'yield'];
 
 function isReserved(name) {
-  RESERVED_KEYWORDS.forEach(reserved => {
-    if (name === reserved) {
-      return true;
-    }
-  });
+  return RESERVED_KEYWORDS.includes(name);
+  // for (let i = 0; i < RESERVED_KEYWORDS.length; i += 1) {
+  //   if (name === RESERVED_KEYWORDS[i]) return true;
+  // }
 
-  return false;
+  // return false;
 }
 
 console.log(isReserved('monkey')); // false

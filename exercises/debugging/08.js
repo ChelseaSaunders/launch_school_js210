@@ -6,6 +6,7 @@
 
 // Standard role-playing dice, ranging from 4 faces to 20,
 // specified in terms of minimum and maximum face value.
+
 const d4  = {min: 1, max: 4};
 const d6  = {min: 1, max: 6};
 const d8  = {min: 1, max: 8};
@@ -40,7 +41,9 @@ function targetRoll(characterValue, bonus = {min: 0, max: 0}, penalty = {min: 0,
 
   switch (result) {
     case 1:  automaticFail();
+      break;
     case 20: automaticSuccess();
+      break;
     default: result >= characterValue ? success() : fail();
   }
 }

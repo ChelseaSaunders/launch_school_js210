@@ -24,7 +24,7 @@ const memberDirectory = {
 };
 
 function isValidName(name) {
-  return (/^\w+ \w+$/).test(name);
+  return (/[a-z]+ [a-z]$/i).test(name);
 }
 
 function isValidPhone(phone) {

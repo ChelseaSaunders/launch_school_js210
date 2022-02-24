@@ -12,7 +12,7 @@ function average(nums) {
 }
 
 function median(nums) {
-  nums.sort();
+  nums.sort((a, b) => a - b);
 
   let median;
   const length = nums.length;

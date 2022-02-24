@@ -2,22 +2,34 @@
 
 // There are a lot of exciting classes offered in our region. We wrote a small
 // script that checks which ones are still upcoming and compatible with our
-// calendar. We must be available to attend all sessions of a particular class in
-// order to sign up for it. We can always arrange that on weekends, but for
+// calendar. We must be available to attend all sessions of a particular class
+// in order to sign up for it. We can always arrange that on weekends, but for
 // weekdays we have to check whether our calendar is free.
 
 // Although the code below runs, something is wrong with it. Why is everything
 // except for the Back To The Future Movie Night in the list of compatible
 // classes?
 
-// const TODAY = toDate("2018-08-05");
+const TODAY = toDate("2018-08-05");
 
 function toDate(string) {
   return new Date(`${string}T00:00:00`);
 }
 
 function toString(date) {
-  return `${date.getYear()}-${date.getMonth()}-${date.getDay()}`;
+  function pad(string, n) {
+    while (string.length < n) {
+      string = `0${string}`;
+    }
+
+    return string;
+  }
+
+  const year  = String(date.getFullYear());
+  const month = pad(String(date.getMonth() + 1), 2);
+  const day   = pad(String(date.getDate()), 2);
+
+  return `${year}-${month}-${day}`;
 }
 
 function isInThePast(date) {

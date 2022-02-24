@@ -11,6 +11,10 @@
 
 function range(start, end) {
   const range = [];
+  if (!end) {
+    end = start;
+    start = 0;
+  }
 
   for (let element = start; element <= end; element++) {
     range.push(element);
@@ -19,9 +23,9 @@ function range(start, end) {
   return range;
 }
 
-function range(end) {
-  return range(0, end);
-}
+// function range(end) {
+//   return range(0, end);
+// }
 
 // Examples
 
