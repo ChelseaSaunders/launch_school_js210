@@ -65,7 +65,9 @@ data manipulation: ustring
 
 ALOGO:
 create const all alpha chars *lowercase*
-
+- if shift.length === 0 or if text.match/[a-z]gi/ === null, return text;
+- if text.length === 0, return ''
+-
 convert shift string into array of number shift values
   HELPER FUNCTION:
     - split string into array of chars
@@ -95,6 +97,10 @@ return encrypt string
 const alpha = 'abcdefghijklmnopqrstuvwxyz';
 
 function vigenereCypher(text, shift) {
+  if (shift.length === 0 ||
+      text.match(/[a-z]/gi) === null ||
+      text.length === 0) { return text; }
+
   let encryptKey = generateEncryptKey(shift);
   let encrypted = '';
   let shiftCount = 0;
@@ -131,7 +137,7 @@ function calculateShiftCount(count, keyArr) {
 
 console.log(vigenereCypher("Pineapples don't go on pizzas!", 'meat')); // Bmnxmtpeqw dhz'x gh ar pbldal!
 console.log(vigenereCypher('', '')); // ''
-// console.log(vigenereCypher("Pineapples don't go on pizzas!", ''));  // Pineapples don't go on pizzas!
-// console.log(vigenereCypher('', 'meat')); // ''
+console.log(vigenereCypher("Pineapples don't go on pizzas!", ''));  // Pineapples don't go on pizzas!
+console.log(vigenereCypher('', 'meat')); // ''
 console.log(vigenereCypher('abc', 'abcd')); // 0, 1, 2; ace
 console.log(vigenereCypher('123', 'ab'));
