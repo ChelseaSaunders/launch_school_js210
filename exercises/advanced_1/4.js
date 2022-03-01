@@ -41,6 +41,21 @@
 
 // Examples:
 
+function rotate90(matrixArr) {
+  let rotatedArray = [];
+
+  for (let i = matrixArr.length - 1; i >= 0; i -= 1) {
+    let currentRow = matrixArr[i];
+    for (let idx = 0; idx < currentRow.length; idx += 1) {
+      let row = rotatedArray[idx] || [];
+      row.push(currentRow[idx]);
+      rotatedArray[idx] = row;
+    }
+
+  }
+  return rotatedArray;
+}
+
 const matrix1 = [
   [1, 5, 8],
   [4, 7, 2],

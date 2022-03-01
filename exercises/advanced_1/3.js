@@ -11,9 +11,24 @@
 
 // Examples:
 
-transpose([[1, 2, 3, 4]]);            // [[1], [2], [3], [4]]
-transpose([[1], [2], [3], [4]]);      // [[1, 2, 3, 4]]
-transpose([[1]]);                     // [[1]]
+function transpose(matrixArr) {
+  let transposedArray = [];
 
-transpose([[1, 2, 3, 4, 5], [4, 3, 2, 1, 0], [3, 7, 8, 6, 2]]);
+  for (let i = 0; i < matrixArr.length; i += 1) {
+    let currentRow = matrixArr[i];
+    for (let idx = 0; idx < currentRow.length; idx += 1) {
+      let row = transposedArray[idx] || [];
+      row.push(currentRow[idx]);
+      transposedArray[idx] = row;
+    }
+
+  }
+  return transposedArray;
+}
+
+console.log(transpose([[1, 2, 3, 4]]));            // [[1], [2], [3], [4]]
+console.log(transpose([[1], [2], [3], [4]]));      // [[1, 2, 3, 4]]
+console.log(transpose([[1]]));                     // [[1]]
+
+console.log(transpose([[1, 2, 3, 4, 5], [4, 3, 2, 1, 0], [3, 7, 8, 6, 2]]));
 // [[1, 4, 3], [2, 3, 7], [3, 2, 8], [4, 1, 6], [5, 0, 2]]
