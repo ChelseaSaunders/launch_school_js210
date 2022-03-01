@@ -30,8 +30,7 @@
 // exist.
 
 // The transpose of a 3x3 matrix is the matrix that results from exchanging the
-// rows and columns of the original matrix. For example, the transposition of
-// the matrix shown above is:
+// rows and columns of the original matrix. For example, the transposition othe matrix shown above is:
 
 // 1  4  3
 // 5  7  9
@@ -41,8 +40,8 @@
 // and returns the transpose of the matrix. You should implement the function on
 // your own, without using any external libraries.
 
-// Take care not to modify the original matrix — your function must produce a new
-// matrix and leave the input matrix array unchanged.
+// Take care not to modify the original matrix — your function must produce a
+// new matrix and leave the input matrix array unchanged.
 
 // Examples:
 
@@ -52,7 +51,21 @@ const matrix = [
   [3, 9, 6]
 ];
 
+function transpose(matrixArr) {
+  let transposedArray = [];
+
+  for (let i = 0; i < matrixArr.length; i += 1) {
+    let currentRow = matrixArr[i];
+    for (let idx = 0; idx < currentRow.length; idx += 1) {
+      let row = transposedArray[idx] || [];
+      row.push(currentRow[idx]);
+      transposedArray[idx] = row;
+    }
+
+  }
+  return transposedArray;
+}
 const newMatrix = transpose(matrix);
 
 console.log(newMatrix);      // [[1, 4, 3], [5, 7, 9], [8, 2, 6]]
-console.log(matrix);         // [[1, 5, 8], [4, 7, 2], [3, 9, 6]]
+// console.log(matrix);         // [[1, 5, 8], [4, 7, 2], [3, 9, 6]]
