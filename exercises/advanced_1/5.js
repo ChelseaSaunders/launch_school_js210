@@ -15,6 +15,26 @@ new array contains values in order from lowest to highest (not just alternating
   values between the two arrays)
 empty arrays are ignored--copy of non-empty array is returned
 
+data:
+input: arr
+output: arr
+manipulation: arr
+
+algo:
+initialize empty array
+initialzie arr1 idx to 0
+initialize arr2 idx to 0
+create while loop while each index is less than or equal to the length of its
+  arr
+if elemnts at indices are both undefined break
+if second element is undefined or first element is less thans second element
+  add first element to array
+  add one to first array index
+else
+  add second element to array
+  add one to second element index
+
+return new arr
 
 */
 
