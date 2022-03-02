@@ -27,6 +27,41 @@
 
 // Examples:
 
+function merge(arr1, arr2) {
+  let merged = [];
+  let arr1Idx = 0;
+  let arr2Idx = 0;
+
+  while (arr1Idx <= arr1.length && arr2Idx <= arr2.length) {
+    if (arr1[arr1Idx] === undefined && arr2[arr2Idx] === undefined) {
+      break;
+    } else if (arr2[arr2Idx] === undefined || arr1[arr1Idx] <= arr2[arr2Idx]) {
+      merged.push(arr1[arr1Idx]);
+      arr1Idx += 1;
+
+    } else {
+      merged.push(arr2[arr2Idx]);
+      arr2Idx += 1;
+    }
+  }
+
+  return merged;
+}
+
+function mergeSort(array) {
+  if (array.length === 1) {
+    return array;
+  }
+
+  let subArray1 = array.slice(0, array.length / 2);
+  let subArray2 = array.slice(array.length / 2);
+
+  subArray1 = mergeSort(subArray1);
+  subArray2 = mergeSort(subArray2);
+
+  return merge(subArray1, subArray2);
+}
+
 mergeSort([9, 5, 7, 1]);           // [1, 5, 7, 9]
 mergeSort([5, 3]);                 // [3, 5]
 mergeSort([6, 2, 7, 1, 4]);        // [1, 2, 4, 6, 7]
